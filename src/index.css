@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 28% 9%;
+    --surface: 215 24% 12%;
+    --foreground: 214 27% 96%;
+    --muted-foreground: 213 15% 67%;
+    --accent: 220 100% 65%;
+    --border: 215 21% 24%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: hsl(220 100% 65% / 0.3);
+  }
+}
+
+@layer utilities {
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+
+  .border-border-color {
+    border-color: hsl(var(--border));
+  }
+}
