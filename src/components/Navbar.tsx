@@ -1,121 +1,114 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 
-const navLinks = [
-  { label: 'Home', href: '#home' },
+const links = [
+  { label: 'Events', href: '#tournaments' },
   { label: 'About', href: '#about' },
-  { label: 'Tournaments', href: '#tournaments' },
-  { label: 'Services', href: '#services' },
   { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
-    setIsOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  const go = (href: string) => {
+    setOpen(false)
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-          scrolled
-            ? 'bg-[hsl(215,28%,9%)] border-b border-[hsl(215,21%,24%)] shadow-lg shadow-black/20'
-            : 'bg-[hsl(215,28%,9%)] border-b border-[hsl(215,21%,24%)]'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          background: scrolled ? 'rgba(8,12,16,0.95)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        }}
       >
+        {/* Cyan top line */}
+        <div className="h-[2px] w-full" style={{ background: 'var(--accent)' }} />
+
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Wordmark */}
           <a
             href="#home"
-            onClick={(e) => { e.preventDefault(); handleNavClick('#home') }}
-            className="text-[hsl(214,27%,96%)] font-black text-xl tracking-widest uppercase hover:text-[hsl(220,100%,65%)] transition-colors"
+            onClick={(e) => { e.preventDefault(); go('#home') }}
+            className="font-black text-white text-lg tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
           >
             GHOULKING
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.slice(1, -1).map((link) => (
+          <nav className="hidden md:flex items-center gap-1">
+            {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                className="text-sm text-[hsl(213,15%,67%)] hover:text-[hsl(214,27%,96%)] transition-colors font-medium tracking-wide"
+                onClick={(e) => { e.preventDefault(); go(link.href) }}
+                className="px-4 py-2 text-sm font-medium rounded transition-colors hover:text-white"
+                style={{ color: 'var(--muted)' }}
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); handleNavClick('#contact') }}
-              className="text-sm bg-[hsl(220,100%,65%)] text-white font-semibold px-5 py-2 hover:bg-[hsl(220,100%,58%)] transition-colors tracking-wide"
+              onClick={(e) => { e.preventDefault(); go('#contact') }}
+              className="ml-4 px-5 py-2 text-sm font-bold rounded text-black transition-opacity hover:opacity-85"
+              style={{ background: 'var(--accent)' }}
             >
-              Contact Me
+              Work With Me
             </a>
           </nav>
 
-          {/* Mobile hamburger */}
           <button
-            className="md:hidden text-[hsl(213,15%,67%)] hover:text-white transition-colors p-1"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            className="md:hidden p-1.5 rounded"
+            style={{ color: 'var(--muted)' }}
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </header>
 
-      {/* Mobile drawer overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/60"
-          onClick={() => setIsOpen(false)}
-        />
+      {open && (
+        <div className="fixed inset-0 z-40 bg-black/70" onClick={() => setOpen(false)} />
       )}
-
-      {/* Mobile drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 z-50 bg-[hsl(215,24%,12%)] border-l border-[hsl(215,21%,24%)] flex flex-col transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-full w-72 z-50 flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ background: 'var(--surface)', borderLeft: '1px solid var(--border)' }}
       >
-        <div className="h-16 flex items-center justify-between px-6 border-b border-[hsl(215,21%,24%)]">
-          <span className="text-[hsl(214,27%,96%)] font-black text-lg tracking-widest uppercase">GHOULKING</span>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-[hsl(213,15%,67%)] hover:text-white transition-colors p-1"
-            aria-label="Close menu"
-          >
+        <div className="h-[2px]" style={{ background: 'var(--accent)' }} />
+        <div className="h-16 flex items-center justify-between px-6" style={{ borderBottom: '1px solid var(--border)' }}>
+          <span className="font-black text-white tracking-[0.15em] uppercase">GHOULKING</span>
+          <button onClick={() => setOpen(false)} style={{ color: 'var(--muted)' }}>
             <X size={20} />
           </button>
         </div>
-        <nav className="flex flex-col gap-1 p-6">
-          {navLinks.map((link) => (
+        <nav className="flex flex-col gap-1 p-4">
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-              className="text-[hsl(213,15%,67%)] hover:text-[hsl(214,27%,96%)] font-medium py-3 text-base border-b border-[hsl(215,21%,24%)] last:border-0 transition-colors"
+              onClick={(e) => { e.preventDefault(); go(link.href) }}
+              className="px-4 py-3 text-sm font-medium rounded hover:text-white transition-colors"
+              style={{ color: 'var(--muted)' }}
             >
               {link.label}
             </a>
           ))}
           <a
             href="mailto:XxGhoulkingxX6@gmail.com"
-            className="mt-6 text-center text-sm bg-[hsl(220,100%,65%)] text-white font-semibold px-5 py-3 hover:bg-[hsl(220,100%,58%)] transition-colors tracking-wide"
+            className="mt-4 px-4 py-3 text-sm font-bold text-center text-black rounded transition-opacity hover:opacity-85"
+            style={{ background: 'var(--accent)' }}
           >
-            Contact Me
+            Work With Me
           </a>
         </nav>
       </div>
