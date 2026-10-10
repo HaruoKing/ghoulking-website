@@ -1,87 +1,88 @@
 export default function Hero() {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden"
-      style={{
-        background: 'hsl(215,28%,9%)',
-      }}
+      className="relative min-h-screen flex flex-col justify-center pt-20"
+      style={{ background: 'var(--bg)' }}
     >
-      {/* Subtle grid texture */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(hsl(214,27%,96%) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(214,27%,96%) 1px, transparent 1px)
+            linear-gradient(rgba(0,212,200,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,212,200,0.03) 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
+          backgroundSize: '48px 48px',
         }}
       />
 
-      {/* Accent rule — top left decorative element */}
-      <div className="absolute top-32 left-0 w-1 h-32 bg-[hsl(220,100%,65%)] hidden lg:block" />
+      {/* Glow */}
+      <div
+        className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(0,212,200,0.06) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
+      />
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24">
-        {/* Overline */}
-        <p className="text-[hsl(220,100%,65%)] text-xs font-semibold tracking-[0.25em] uppercase mb-8">
-          Victor Rodriguez · GhoulKing
-        </p>
+      <div className="relative max-w-6xl mx-auto px-6 py-24 w-full">
+        {/* Tag */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-8 h-[2px]" style={{ background: 'var(--accent)' }} />
+          <span className="text-xs font-semibold tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
+            Tournament Organizer · Albany, NY
+          </span>
+        </div>
 
-        {/* Main headline */}
-        <h1 className="text-[hsl(214,27%,96%)] font-black text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight mb-8 max-w-4xl">
-          Competitive<br />
-          Events.<br />
-          <span className="text-[hsl(220,100%,65%)]">Organized</span><br />
-          With Purpose.
+        {/* Headline */}
+        <h1 className="font-black text-white leading-[1.05] tracking-tight mb-6" style={{ fontSize: 'clamp(2.8rem, 7vw, 6rem)' }}>
+          Victor Rodriguez
+          <br />
+          <span style={{ color: 'var(--accent)' }}>GhoulKing</span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-[hsl(213,15%,67%)] text-lg sm:text-xl max-w-xl leading-relaxed mb-4">
-          Full-service tournament coordination for rhythm games, fighting games, and competitive gaming events across New York.
-        </p>
-
-        {/* Title line */}
-        <p className="text-[hsl(213,15%,55%)] text-sm tracking-wide mb-12">
-          Independent Gaming Tournament Organizer · Albany, NY
+        {/* Sub */}
+        <p className="text-lg leading-relaxed mb-12 max-w-xl" style={{ color: 'var(--muted)', fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}>
+          I organize competitive gaming events — DDR tournaments, rhythm games, and fighting games — with structured rulesets, skill-based divisions, and proper operations.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-wrap gap-4">
           <button
-            onClick={() => scrollTo('tournaments')}
-            className="inline-flex items-center justify-center bg-[hsl(220,100%,65%)] text-white font-semibold text-sm px-8 py-4 hover:bg-[hsl(220,100%,58%)] transition-colors tracking-wide"
+            onClick={() => go('tournaments')}
+            className="px-7 py-3.5 text-sm font-bold text-black rounded transition-opacity hover:opacity-85"
+            style={{ background: 'var(--accent)' }}
           >
-            View My Tournaments
+            View My Events
           </button>
           <button
-            onClick={() => scrollTo('contact')}
-            className="inline-flex items-center justify-center border border-[hsl(215,21%,24%)] text-[hsl(213,15%,67%)] font-semibold text-sm px-8 py-4 hover:border-[hsl(220,100%,65%)] hover:text-[hsl(214,27%,96%)] transition-colors tracking-wide"
+            onClick={() => go('contact')}
+            className="px-7 py-3.5 text-sm font-semibold rounded transition-colors hover:text-white"
+            style={{
+              color: 'var(--muted)',
+              border: '1px solid var(--border)',
+            }}
           >
-            Get in Touch
+            Work With Me
           </button>
         </div>
 
-        {/* Bottom stat strip */}
-        <div className="mt-24 pt-8 border-t border-[hsl(215,21%,24%)] flex flex-wrap gap-8">
-          <div>
-            <div className="text-[hsl(214,27%,96%)] font-black text-3xl">2</div>
-            <div className="text-[hsl(213,15%,67%)] text-xs tracking-wider uppercase mt-1">DDR Tournaments</div>
-          </div>
-          <div className="w-px bg-[hsl(215,21%,24%)] self-stretch" />
-          <div>
-            <div className="text-[hsl(214,27%,96%)] font-black text-3xl">18</div>
-            <div className="text-[hsl(213,15%,67%)] text-xs tracking-wider uppercase mt-1">Competitors</div>
-          </div>
-          <div className="w-px bg-[hsl(215,21%,24%)] self-stretch" />
-          <div>
-            <div className="text-[hsl(214,27%,96%)] font-black text-3xl">NY</div>
-            <div className="text-[hsl(213,15%,67%)] text-xs tracking-wider uppercase mt-1">Based</div>
-          </div>
+        {/* Stats */}
+        <div className="flex flex-wrap gap-12 mt-20 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
+          {[
+            { value: '2', label: 'Events Organized' },
+            { value: '18', label: 'Competitors' },
+            { value: 'DDR', label: 'Specialty' },
+            { value: 'NY', label: 'Based' },
+          ].map(({ value, label }) => (
+            <div key={label}>
+              <div className="font-black text-3xl text-white">{value}</div>
+              <div className="text-xs tracking-wider uppercase mt-1" style={{ color: 'var(--muted)' }}>{label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
