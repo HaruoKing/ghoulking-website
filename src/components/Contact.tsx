@@ -1,3 +1,5 @@
+import { Download } from 'lucide-react'
+
 export default function Contact() {
   return (
     <section id="contact" className="py-28" style={{ background: 'var(--surface)' }}>
@@ -74,9 +76,18 @@ export default function Contact() {
               style={{ background: 'var(--accent-dim)', border: '1px solid rgba(0,212,200,0.15)' }}
             >
               <p className="text-sm font-medium mb-1" style={{ color: 'var(--accent)' }}>Expanding to NYC</p>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--muted)' }}>
                 Events are currently based in the Albany area. Actively seeking partnerships with New York City venues to grow the competitive scene.
               </p>
+              <a
+                href="/images/Victor_Rodriguez_GhoulKing_Portfolio.pdf"
+                download="Victor_Rodriguez_GhoulKing_Portfolio.pdf"
+                className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded transition-opacity hover:opacity-80"
+                style={{ background: 'var(--surface)', color: 'var(--accent)', border: '1px solid rgba(0,212,200,0.3)' }}
+              >
+                <Download size={14} />
+                Download Organizer Portfolio
+              </a>
             </div>
           </div>
         </div>
