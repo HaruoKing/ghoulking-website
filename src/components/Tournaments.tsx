@@ -36,7 +36,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
 
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
-      <div className="grid lg:grid-cols-[1fr_280px]">
+      <div className="grid lg:grid-cols-[1fr_280px] divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
         {/* Content */}
         <div className="p-8">
           {/* Status + date row */}
@@ -210,23 +210,26 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
 
         {/* Flyer */}
         <div
-          className="relative cursor-zoom-in group overflow-hidden"
-          style={{ borderLeft: '1px solid var(--border)' }}
+          className="relative cursor-zoom-in group flex items-center justify-center"
+          style={{
+            background: 'var(--surface-2)',
+            minHeight: '280px',
+          }}
           onClick={() => setFlyerOpen(true)}
         >
           <img
             src={tournament.flyerSrc}
             alt={tournament.flyerAlt}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            style={{ minHeight: '280px' }}
+            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{ maxHeight: '420px', padding: '12px' }}
             loading="lazy"
           />
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
-            style={{ background: 'rgba(0,212,200,0.08)' }}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4"
+            style={{ background: 'rgba(0,0,0,0.25)' }}
           >
-            <span className="text-xs font-semibold tracking-widest uppercase text-white bg-black/60 px-4 py-2 rounded">
-              View Flyer
+            <span className="text-xs font-semibold tracking-widest uppercase text-white bg-black/70 px-4 py-2 rounded">
+              View Full Size
             </span>
           </div>
         </div>
