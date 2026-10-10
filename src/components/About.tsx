@@ -1,53 +1,54 @@
 export default function About() {
   return (
-    <section id="about" className="py-28 bg-[hsl(215,24%,12%)]">
+    <section id="about" className="py-28" style={{ background: 'var(--surface)' }}>
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section label */}
-        <p className="text-[hsl(220,100%,65%)] text-xs font-semibold tracking-[0.25em] uppercase mb-4">
-          About
-        </p>
-        <div className="w-12 h-px bg-[hsl(220,100%,65%)] mb-12" />
-
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left: prose */}
+          {/* Left */}
           <div>
-            <h2 className="text-[hsl(214,27%,96%)] font-black text-4xl lg:text-5xl leading-tight tracking-tight mb-8">
-              GhoulKing
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-[2px]" style={{ background: 'var(--accent)' }} />
+              <span className="text-xs font-semibold tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
+                About
+              </span>
+            </div>
+            <h2 className="font-black text-white leading-tight tracking-tight mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+              The person behind the bracket
             </h2>
-            <div className="space-y-5 text-[hsl(213,15%,67%)] leading-relaxed">
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--muted)' }}>
               <p>
-                I'm Victor Rodriguez, an independent gaming tournament organizer operating under the brand GhoulKing. My focus is on producing competitive gaming events that are structured, fair, and built around the player experience.
+                I'm Victor Rodriguez — I organize competitive gaming events under the name GhoulKing. I handle everything from writing the rulebook to running match operations on the day.
               </p>
               <p>
-                In May 2026, I planned and executed an 18-player Dance Dance Revolution tournament at Prince UFO in Colonie Center Mall, Colonie, New York. I managed every component of the event: rulebook authorship, bracket format design, player registration, skill-based division placement, and full on-site tournament operations.
+                My first event was an 18-player DDR tournament at Prince UFO, Colonie Center Mall, in May 2026. My second, Capital Rhythm, is a two-day tournament on October 17–18, 2026 — built around EX Score judging, randomized song selection, and a published rulebook.
               </p>
               <p>
-                My second event, Capital Rhythm, is a two-day DDR tournament scheduled for October 17–18, 2026 — designed from the ground up with refined structure: EX Score–based judging, randomized song selection via DDR Tools, a published rulebook, and separate competition days for each skill division.
-              </p>
-              <p>
-                My goal is to establish a consistent competitive gaming calendar across New York, beginning with rhythm games and expanding into fighting-game tournaments at arcades, gaming lounges, and esports venues throughout the state.
+                I'm building toward a regular schedule of rhythm-game and fighting-game tournaments at venues across New York.
               </p>
             </div>
           </div>
 
-          {/* Right: detail grid */}
-          <div className="space-y-0 border border-[hsl(215,21%,24%)]">
+          {/* Right: quick facts */}
+          <div className="space-y-0 rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
             {[
               { label: 'Role', value: 'Independent Tournament Organizer' },
-              { label: 'Specialization', value: 'Dance Dance Revolution & Rhythm Games' },
-              { label: 'Location', value: 'New York' },
-              { label: 'First Event', value: 'DDR A3 Tournament — May 9, 2026' },
-              { label: 'Next Event', value: 'Capital Rhythm — October 17–18, 2026' },
-              { label: 'Expanding Into', value: 'NYC venues, fighting-game tournaments' },
+              { label: 'Specialty', value: 'Dance Dance Revolution & Rhythm Games' },
+              { label: 'Location', value: 'Albany, New York' },
+              { label: 'First Event', value: 'DDR A3 — May 9, 2026' },
+              { label: 'Next Event', value: 'Capital Rhythm — Oct 17–18, 2026' },
+              { label: 'Expanding Into', value: 'NYC venues & fighting-game events' },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex border-b border-[hsl(215,21%,24%)] last:border-b-0"
+                className="flex items-start"
+                style={{ borderBottom: i < 5 ? '1px solid var(--border)' : 'none' }}
               >
-                <div className="w-36 flex-shrink-0 px-5 py-4 bg-[hsl(215,28%,9%)] text-[hsl(213,15%,67%)] text-xs font-semibold tracking-wider uppercase flex items-center">
+                <div
+                  className="w-32 flex-shrink-0 px-5 py-4 text-xs font-semibold tracking-wider uppercase"
+                  style={{ color: 'var(--muted-dim)', background: 'var(--surface-2)' }}
+                >
                   {item.label}
                 </div>
-                <div className="flex-1 px-5 py-4 text-[hsl(214,27%,96%)] text-sm font-medium">
+                <div className="flex-1 px-5 py-4 text-sm text-white font-medium">
                   {item.value}
                 </div>
               </div>
