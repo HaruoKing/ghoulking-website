@@ -4,18 +4,21 @@
 
 @layer base {
   :root {
-    --background: 215 28% 9%;
-    --surface: 215 24% 12%;
-    --foreground: 214 27% 96%;
-    --muted-foreground: 213 15% 67%;
-    --accent: 220 100% 65%;
-    --border: 215 21% 24%;
-    --radius: 0.25rem;
+    --bg: #080C10;
+    --surface: #0D1117;
+    --surface-2: #131920;
+    --border: #1E2A35;
+    --accent: #00D4C8;
+    --accent-dim: rgba(0, 212, 200, 0.12);
+    --fg: #FFFFFF;
+    --muted: #8B98A5;
+    --muted-dim: #4A5568;
   }
 
   * {
-    @apply border-border;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html {
@@ -23,27 +26,14 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--bg);
+    color: var(--fg);
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: hsl(220 100% 65% / 0.3);
-  }
-}
-
-@layer utilities {
-  .text-accent {
-    color: hsl(var(--accent));
-  }
-
-  .bg-surface {
-    background-color: hsl(var(--surface));
-  }
-
-  .border-border-color {
-    border-color: hsl(var(--border));
+    background: rgba(0, 212, 200, 0.2);
   }
 }
