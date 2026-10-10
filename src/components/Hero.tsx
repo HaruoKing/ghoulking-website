@@ -33,7 +33,7 @@ export default function Hero() {
         <div className="flex items-center gap-3 mb-8">
           <div className="w-8 h-[2px]" style={{ background: 'var(--accent)' }} />
           <span className="text-xs font-semibold tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
-            Tournament Organizer · Albany, NY
+            New York-based · Available for NYC venue collaborations
           </span>
         </div>
 
@@ -73,10 +73,10 @@ export default function Hero() {
         {/* Stats */}
         <div className="flex flex-wrap gap-12 mt-20 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
           {[
-            { value: '2', label: 'Events Organized' },
+            { value: '1', label: 'Completed' },
+            { value: '1', label: 'Upcoming' },
             { value: '18', label: 'Competitors' },
             { value: 'DDR', label: 'Specialty' },
-            { value: 'NY', label: 'Based' },
           ].map(({ value, label }) => (
             <div key={label}>
               <div className="font-black text-3xl text-white">{value}</div>
